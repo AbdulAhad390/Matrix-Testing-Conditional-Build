@@ -1,4 +1,4 @@
-name: CI pipeline for testing and building
+name: CI Pipeline for testing and building
 
 on:
   push:
@@ -17,10 +17,12 @@ concurrency:
   cancel-in-progress: true   
 
 jobs:
+
   test:
     name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node: [16, 18, 20]
     steps:
@@ -34,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create test-results directory
+        run: mkdir -p test-results
+
       - name: Run tests
         run: npm test -- --reporter junit --reporter-options "mochaFile=test-results/results-${{ matrix.node }}.xml"
 
@@ -43,13 +48,12 @@ jobs:
           name: test-results-${{ matrix.node }}
           path: test-results/
 
+ 
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: test
-    if: |
-      github.ref == 'refs/heads/main' || 
-      startsWith(github.ref, 'refs/tags/v')
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@v4
 
@@ -60,23 +64,23 @@ jobs:
           minimum-approvals: 1
           issue-title: "Approval needed for build on ${{ github.ref }}"
           issue-body: "Please approve or deny the build for commit ${{ github.sha }}."
-          secret: ${{ secrets.GITHUB_TOKEN }} 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js (default LTS)
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20  
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build project
-        run: npm run build
+        run: npm run bild
 
       - name: Store build output
-       #` uses: actions/upload-artifact@v4
+        uses: actions/upload-artact@v4
         with:
           name: dist
           path: dist/
+
