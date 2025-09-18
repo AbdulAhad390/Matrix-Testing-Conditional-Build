@@ -1,4 +1,4 @@
-# 🚀 CI Pipeline with Matrix Testing & Conditional Build
+# 🚀 Matrix Testing & Conditional Build
 
 This repository demonstrates a **GitHub Actions CI/CD pipeline** that validates Node.js projects across multiple runtimes and builds artifacts only under specific conditions.
 
