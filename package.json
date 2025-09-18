@@ -7,10 +7,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "echo \"No lint configured\" && exit 0",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "mocha"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
+    "mocha": "^11.7.2",
+    "mocha-junit-reporter": "^2.2.1",
     "vite": "^5.0.0"
   },
   "dependencies": {

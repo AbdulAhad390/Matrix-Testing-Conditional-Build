@@ -77,9 +77,3 @@ jobs:
         with:
           name: dist
           path: dist/
-
-      - name: Manual approval before publish
-        if: always()
-        uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
