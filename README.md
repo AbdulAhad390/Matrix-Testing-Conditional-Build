@@ -55,15 +55,6 @@ This repository demonstrates a **GitHub Actions CI/CD pipeline** that validates 
 4. Approver must **approve the build** via GitHub issue created by workflow.  
 5. Build artifacts saved under `dist/`.  
 
----
-
-## 📸 Example Run
-- **Push to feature branch** → only tests run.  
-- **Push to `main`** → tests + manual approval + build.  
-- **Push tag `v1.0.0`** → tests + manual approval + build.  
-
----
-
 ## 🔒 Requirements
 - Node.js project with:
   - `npm ci` for installing dependencies  
