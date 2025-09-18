@@ -1,4 +1,4 @@
-name: CI Pipeline for testing & Build
+name: CI Pipeline for Testing & Build
 
 on:
   push:
@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: ${{ github.ref }}
-  cancel-in-progress: true   
+  cancel-in-progress: true   # (Optional) Cancel superseded runs
 
 jobs:
   test:
