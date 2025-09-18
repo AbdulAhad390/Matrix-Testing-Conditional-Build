@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI pipeline for testing and building
 
 on:
   push:
@@ -76,7 +76,7 @@ jobs:
         run: npm run build
 
       - name: Store build output
-        uses: actions/upload-artifact@v4
+       #` uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
